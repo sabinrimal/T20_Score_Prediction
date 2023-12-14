@@ -1,0 +1,97 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T20 Cricket Score Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'cspapp/style.css' %}">
+  <script src="{% static 'cspapp/script.js' %}"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">T20 Score Prediction</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
+          </li>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <form action="/" method="POST" name="myform">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="currentscore" class="form-label">Current Score</label>
+            <input type="text" class="form-control" id="currentscore" placeholder="Current Score" name="n1" value="{{val1}}">
+          </div>
+          <div class="mb-3">
+            <label for="ballsleft" class="form-label">Balls Left</label>
+            <input type="text" class="form-control" id="currentscore" placeholder="ballsleft" name="n2" value="{{val2}}" required>
+            <div id="bl"></div>
+          </div>
+          <div class="mb-3">
+            <label for="wicketsleft" class="form-label">Wickets Left</label>
+            <input type="text" class="form-control" id="wicketsleft" placeholder="Wickets left" name="n3" value="{{val3}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="currentrunrate" class="form-label">Current Run Rate</label>
+            <input type="text" class="form-control" id="currentrunrate" placeholder="Current Run Rate" name="n4" value="{{val4}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="lastfiveoversrun" class="form-label">Last Five Over Runs</label>
+            <input type="text" class="form-control" id="lastfiveoversrun" placeholder="Last Five Overs Run" name="n5" value="{{val5}}" required>
+          </div>
+
+          <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-3 pt-0">Algorithm</legend>
+            <div class="col-sm-9">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="algo" id="gridRadios1" value="ml" {% if ml %}checked{% endif %}>
+                <label class="form-check-label" for="gridRadios1" >
+                  Multiple Linear
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="algo" id="gridRadios2" value="rf" {% if rf %}checked{% endif %}>
+                <label class="form-check-label" for="gridRadios2">
+                  Random Forest
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+          <div class="mb-3">
+            <input type="submit" value="Submit">
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="col-9 bgimage" style="text-align: center;">
+        <h1 style="margin-top:20px;">Total Runs:{{total_runs}}</h1>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 10px;"><h5>Cricket Score Prediction</h5></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
